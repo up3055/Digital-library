@@ -10,8 +10,10 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@With
 public class InputEntity {
 
+    private  long id;
     @NotBlank(message = "Name is mendatory")
     private String name;
     @NotBlank(message = "author is mendatory")

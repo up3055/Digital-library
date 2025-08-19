@@ -34,7 +34,7 @@ public class BookController {
    @PutMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable long id , @RequestBody  InputEntity updatedInput ){
 
-        return new ResponseEntity<>( this.bookAdapter.updateBook(id,updatedInput), HttpStatus.CREATED);
+        return new ResponseEntity<>( this.bookAdapter.updateBook(id,updatedInput), HttpStatus.OK);
 
     }
 
