@@ -6,6 +6,7 @@ import com.example.Digital.library.Mapper.output.UserOutputMapper;
 import com.example.Digital.library.Model.UserModel;
 import com.example.Digital.library.Repository.jpa.BookJpaRepository;
 import com.example.Digital.library.Repository.jpa.UserJpaRepository;
+import com.example.Digital.library.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,12 @@ public class UserRepository {
            throw new EntityNotFoundException("User name with " + user + "not exits");
        }
        return userOutputMapper.mapToModel(this.userJpaRepository.findByNameIgnoreCase(user));
+    }
+
+
+    public UserModel getUserByEmail(String email) {
+        return this.userJpaRepository.findByEmail(email).map(this.userOutputMapper::mapToModel)
+                .orElseThrow(() -> new ResourceNotFoundException(UserModel.class, "email", email));
     }
 
 

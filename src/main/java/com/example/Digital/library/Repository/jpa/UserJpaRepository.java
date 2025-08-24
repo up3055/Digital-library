@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserJpaRepository extends JpaRepository<UserOutputEntity , Long> {
     @Query("select u from UserOutputEntity u where upper(u.name) = upper(?1)")
@@ -14,4 +16,6 @@ public interface UserJpaRepository extends JpaRepository<UserOutputEntity , Long
     void deleteByName(String name);
 
     boolean existsByName(String name);
+
+    Optional<UserOutputEntity> findByEmail(String email);
 }

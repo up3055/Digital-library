@@ -1,5 +1,6 @@
 package com.example.Digital.library.Entity.Input;
 
+import com.example.Digital.library.Enum.UserRole;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -17,7 +18,10 @@ public class  UserInputEntity {
     private String name;
     private  String address;
     @NotBlank(message = "Mobile number is Mendatory")
+    private String email;
+    private String password;
     private String mobileNo;
     private Instant dateOfBirth;
+    private UserRole role;
 
 }

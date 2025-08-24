@@ -1,6 +1,7 @@
 package com.example.Digital.library.Model;
 
 
+import com.example.Digital.library.Enum.UserRole;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -17,6 +18,9 @@ public class UserModel {
     private String name;
     private String address;
     private  String mobileNo;
+    private  String email;
+    private String password;
+    private UserRole role;
     private Instant dateOfBirth;
 
 }
