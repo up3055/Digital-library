@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private  final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
 
    @Autowired
     public UserService (UserRepository userRepository , UserOutputMapper userOutputMapper){
@@ -25,7 +27,7 @@ public class UserService implements UserDetailsService {
     }
 
     public UserModel addUser(UserModel userModel){
-
+        userModel.setPassword(this.bCryptPasswordEncoder.encode(userModel.getPassword()));
         return this.userRepository.addUser(userModel);
     }
 
